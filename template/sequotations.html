@@ -1,0 +1,49 @@
+{% extends 'sebase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Quotations</h1>
+
+	<table class="table table-bordered table-striped table-secondary table-hover ">
+		<tr>
+			<th>PROJECT</th>
+			<th>DESCRIPTION</th>
+			<th>PLACE</th>
+			<th>LANDMARK</th>
+			<th>STARTING DATE</th>
+			<th>ENDING</th>
+			<th>AMOUNT</th>
+			<th>QUOTATION</th>
+			<th>CONTRACTOR</th>
+			<th colspan="2">ACTION</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.project.name}}</td>
+			<td>{{d.project.desc}}</td>
+			<td>{{d.project.place}}</td>
+			<td>{{d.project.landmark}}</td>
+			<td>{{d.sDate}}</td>
+			<td>{{d.eDate}}</td>
+			<td>{{d.amount}}</td>
+			<td>{{d.quotation}}</td>
+			<td>{{d.contractor.name}}</td>
+			<td>
+				<a href="/sequotationupdate?id={{d.id}}&status=approved" class="btn btn-success">Approved</a>
+			</td>
+			<td>
+				<a href="/sequotationupdate?id={{d.id}}&status=rejected" class="btn btn-danger">Rejected</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

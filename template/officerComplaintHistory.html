@@ -1,0 +1,44 @@
+{% extends 'officerbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Complaints History</h1>
+
+	<table class="table table-bordered table-striped table-secondary table-hover text-center">
+		<tr>
+			<th>ID</th>
+			<th>DATE</th>
+			<th>SUBJECT</th>
+			<th>DESCRIPTION</th>
+			<th>REPONSE</th>
+			<th>REPONSE DATE</th>
+			<th>FARMER</th>
+			<th>EMAIL</th>
+			<th>ADDRESS</th>
+			<th>CONTACT</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.id}}</td>
+			<td>{{d.date}}</td>
+			<td>{{d.subject}}</td>
+			<td>{{d.desc}}</td>
+			<td>{{d.response}}</td>
+			<td>{{d.responseDate}}</td>
+			<td>{{d.farmer.name}}</td>
+			<td>{{d.farmer.email}}</td>
+			<td>{{d.farmer.address}}</td>
+			<td>{{d.farmer.phone}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

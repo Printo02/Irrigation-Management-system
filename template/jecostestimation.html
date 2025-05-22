@@ -1,0 +1,82 @@
+{% extends 'jebase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Cost estimation</h1>
+	<form method="POST">
+		{% csrf_token %}
+		<table class="m-auto">
+			<tr>
+				<td>Estimated duration in months</td>
+				<td>
+					<input
+						type="text"
+						class="form-control"
+						name="txtDuration"
+						pattern="[0-9]{1,3}"
+						required
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td>Estimated cost for purchase</td>
+				<td>
+					<input
+						type="text"
+						class="form-control"
+						name="txtPcost"
+						pattern="[0-9]{3,10}"
+						required
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td>Estimated labor charge</td>
+				<td>
+					<input
+						type="text"
+						class="form-control"
+						name="txtLcost"
+						pattern="[0-9]{3,10}"
+						required
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td>Estimated construction cost</td>
+				<td>
+					<input
+						type="text"
+						class="form-control"
+						name="txtCcost"
+						pattern="[0-9]{3,10}"
+						required
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td>Problems if any detected</td>
+				<td>
+					<textarea name="txtProblem" required class="form-control"></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="submit" class="btn btn-primary" value="Submit" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') {
+		alert(msg);
+		location = '/jeprojectforestimation';
+	}
+</script>
+{% endblock %}

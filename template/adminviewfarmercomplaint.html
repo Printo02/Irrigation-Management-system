@@ -1,0 +1,44 @@
+{% extends 'adminbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Farmer Complaints</h1>
+
+	<table class="table table-bordered table-striped table-secondary table-hover ">
+		<tr>
+			<th>ID</th>
+			<th>DATE</th>
+			<th>NAME</th>
+			<th>ADDRESS</th>
+			<th>CONTACT</th>
+			<th>SUBJECT</th>
+			<th>DESCRIPTION</th>
+			<th>Irrigation Office</th>
+			<th>RESPONSE</th>
+			<th>RESPONSE DATE</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.id}}</td>
+			<td>{{d.date}}</td>
+			<td>{{d.farmer.name}}</td>
+			<td>{{d.farmer.address}}</td>
+			<td>{{d.farmer.phone}}</td>
+			<td>{{d.subject}}</td>
+			<td>{{d.desc}}</td>
+			<td>{% if d.response != "Pending" %}{{d.officer.name}}{% else %}------{% endif %}</td>
+			<td>{% if d.response != "Pending" %}{{d.response}}{% else %}------{% endif %}</td>
+			<td>{% if d.response != "Pending" %}{{d.responseDate}}{% else %}------{% endif %}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

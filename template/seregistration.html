@@ -1,0 +1,94 @@
+{% extends 'commonbase.html' %}
+{% block content %}
+<style>
+    /* Custom styles for better spacing and alignment */
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+    }
+
+    .form-container h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+    }
+</style>
+
+<div class="form-container">
+    <h1>Registration</h1>
+    <form method="POST" novalidate>
+        {% csrf_token %}
+
+        <!-- Name Field -->
+        <div class="form-group">
+            <label for="txtName">Name</label>
+            <input type="text" class="form-control" id="txtName" name="txtName" pattern="[a-zA-Z ]+" required placeholder="Enter your name">
+            <small class="form-text text-muted">Only alphabets and spaces are allowed.</small>
+        </div>
+
+        <!-- Address Field -->
+        <div class="form-group">
+            <label for="txtAddress">Address</label>
+            <textarea class="form-control" id="txtAddress" name="txtAddress" rows="3" required placeholder="Enter your address"></textarea>
+        </div>
+
+        <!-- Contact Field -->
+        <div class="form-group">
+            <label for="txtContact">Contact</label>
+            <input type="text" class="form-control" id="txtContact" name="txtContact" pattern="[6789][0-9]{9}" maxlength="10" required placeholder="Enter your 10-digit mobile number">
+            <small class="form-text text-muted">Must start with 6, 7, 8, or 9.</small>
+        </div>
+
+        <!-- Qualification Field -->
+        <div class="form-group">
+            <label for="txtQual">Qualification</label>
+            <input type="text" class="form-control" id="txtQual" name="txtQual" required placeholder="Enter your qualification">
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="txtEmail">Email</label>
+            <input type="email" class="form-control" id="txtEmail" name="txtEmail" required placeholder="Enter your email address">
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+            <label for="txtPassword">Password</label>
+            <input type="password" class="form-control" id="txtPassword" name="txtPassword" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required placeholder="Enter a strong password">
+            <small class="form-text text-muted">Minimum 8 characters, including letters, numbers, and special characters (@$!%*#?&).</small>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Register">
+        </div>
+    </form>
+</div>
+
+<!-- JavaScript for displaying messages -->
+<script>
+    var msg = "{{ msg }}";
+    if (msg) {
+        alert(msg);
+    }
+</script>
+{% endblock %}

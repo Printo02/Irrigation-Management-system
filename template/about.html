@@ -1,0 +1,40 @@
+{% extends 'commonbase.html' %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <div class="mb-5">
+                <!-- <img src="/api/placeholder/600/400" alt="Irrigation System" class="w-full h-64 object-cover rounded-lg mb-4"> -->
+                <h1 class="text-4xl font-extrabold text-blue-900 mb-4 text-left">
+                    About Us</h1>
+                    <h2 class="text-2xl font-bold text-blue-700 mb-4 text-left">Our Purpose</h2>
+                 <p class="text-gray-700 leading-relaxed text-left">
+                    We are a dedicated team of water resource professionals committed to revolutionizing agricultural water management. Our department stands at the intersection of technology, sustainability, and agricultural innovation.
+                </p>
+
+                <h2 class="text-2xl font-bold text-blue-700 mb-4 text-left">Our Mission</h2>
+                <p class="text-gray-700 leading-relaxed mb-4 text-left">
+                    To empower agricultural productivity through innovative water management solutions, ensuring efficient resource utilization, environmental conservation, and sustainable development.
+                </p>
+                <h2 class="text-2xl font-bold text-blue-700 mb-4 text-left">Our Vision</h2>
+                <p class="text-gray-700 leading-relaxed mb-4 text-left">
+                    To become a global leader in intelligent water resource management, driving technological innovation that transforms agricultural sustainability and water conservation practices.
+                </p>
+                <h2 class="text-3xl font-bold text-blue-900 mb-6 border-b-4 border-blue-500 pb-4 text-left">
+                    Our Commitment
+                </h2>
+                <p class="text-gray-700 leading-relaxed text-left">
+                    We are dedicated to bridging the gap between technological innovation and agricultural sustainability. Our team works tirelessly to develop cutting-edge solutions that address the complex challenges of water management, ensuring that every drop of water is used efficiently and responsibly.
+                </p>
+            </div>
+
+{% if msg %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if ("{{ msg }}" !== "") {
+            alert("{{ msg }}");
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}

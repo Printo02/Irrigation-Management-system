@@ -1,0 +1,30 @@
+{% extends 'officerbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<div>
+    <h1 class="text-center mt-3">Register Complaint</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <table class="m-auto">
+            <tr>
+                <td>Response</td>
+                <td><textarea class="form-control" required name="txtResponse"></textarea></td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td><input type="submit" class="btn btn-primary" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+{% endblock %}

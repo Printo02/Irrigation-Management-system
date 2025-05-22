@@ -1,0 +1,56 @@
+{% extends 'contractorbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Profile</h1>
+	<form method="POST">
+		{% csrf_token %}
+		<table class="m-auto">
+			<tr>
+				<td>Starting date</td>
+				<td>
+					<input type="date" class="form-control" name="txtSdate" required />
+				</td>
+			</tr>
+
+			<tr>
+				<td>Ending date</td>
+				<td>
+					<input type="date" class="form-control" name="txtEdate" required />
+				</td>
+			</tr>
+			<tr>
+				<td>Amount</td>
+				<td>
+					<input type="number" class="form-control" name="txtAmt" required />
+				</td>
+			</tr>
+			<tr>
+				<td>Quotation</td>
+				<td>
+					<textarea
+						name="txtQuotation"
+						class="form-control"
+						required
+					></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" class="btn btn-primary" value="Submit" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') {
+		alert(msg);
+		location = '/contractorquots';
+	}
+</script>
+{% endblock %}

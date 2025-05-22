@@ -1,0 +1,36 @@
+{% extends 'sebase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Select Junior Engineer</h1>
+
+	<table  class="table table-bordered table-striped table-secondary table-hover ">
+		<tr>
+			<th>NAME</th>
+			<th>ADDRESS</th>
+			<th>CONTACT</th>
+			<th>EMAIL</th>
+			<th>QUALIFICATION</th>
+			<th>ACTION</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.name}}</td>
+			<td>{{d.address}}</td>
+			<td>{{d.phone}}</td>
+			<td>{{d.email}}</td>
+			<td>{{d.qualification}}</td>
+			<td><a href="/seje?id={{d.id}}&pid={{pid}}" class="btn btn-primary">Select</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

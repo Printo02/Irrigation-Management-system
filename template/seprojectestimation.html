@@ -1,0 +1,37 @@
+{% extends 'sebase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<div class="container">
+    <h1 class="text-center mt-3">Cost Estimation</h1>
+   
+    <table class="table table-bordered table-striped table-secondary table-hover ">
+        <tr>
+           
+            <th>DURATION IN MONTHS</th>
+            <th>PURCHASE COST</th>
+            <th>LABOR COST</th>
+            <th>CONSTRUCTION COST</th>
+            <th>PROBLEM</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            
+            <td>{{d.duration}}</td>
+            <td>{{d.purchase}}</td>
+            <td>{{d.labour}}</td>
+            <td>{{d.construction}}</td>
+            <td>{{d.problem}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+{% endblock %}

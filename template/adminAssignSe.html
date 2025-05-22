@@ -1,0 +1,35 @@
+{% extends 'adminbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Assign Senior Engineer</h1>
+	<form method="POST">
+		{% csrf_token %}
+		<table class="m-auto">
+			<tr>
+				<td>Name</td>
+				<td>
+					<select type="text" class="form-control" name="seg" required>
+						<option value="" selected disabled>Select Senior Engineer</option>
+                        {% for s in se %}
+                        <option value="{{s.id}}">{{s.name}}</option>
+                        {% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" class="btn btn-primary" value="Update" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

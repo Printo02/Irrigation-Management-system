@@ -1,0 +1,36 @@
+{% extends 'jebase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Project for Cost Estimation</h1>
+
+	<table class="table table-bordered table-striped table-secondary table-hover ">
+		<tr>
+			<th>PROJECT</th>
+			<th>DESCRIPTION</th>
+			<th>PLACE</th>
+			<th>LANDMARK</th>
+			<th>SE</th>
+			<th>ACTION</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.name}}</td>
+			<td>{{d.desc}}</td>
+			<td>{{d.place}}</td>
+			<td>{{d.landmark}}</td>
+			<td>{{d.senior.name}}</td>
+			<td><a href="/jecostestimation?id={{d.id}}" class="btn btn-success">Add Estimation</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

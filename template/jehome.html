@@ -1,0 +1,75 @@
+{% extends 'jebase.html' %} 
+{% block content %}
+<style>
+    /* Global styles */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Dashboard header - matching your image */
+    .dashboard-header {
+        background-color: #f5f5f5;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .dashboard-header h1 {
+        font-size: 2rem;
+        color: #333;
+        margin: 0;
+    }
+    
+    .dashboard-header .date {
+        color: #666;
+        font-size: 1rem;
+        margin-top: 5px;
+    }
+    
+    .refresh-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    
+    .refresh-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<!-- Dashboard header with dynamic date -->
+<div class="dashboard-header">
+    <div>
+        <h1>Junior Engineer Dashboard</h1>
+        <div class="date" id="current-date">Loading date...</div>
+    </div>
+</div>
+
+<script>
+    // Function to display the current date
+    function updateCurrentDate() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = now.toLocaleDateString('en-US', options);
+        document.getElementById('current-date').textContent = formattedDate;
+    }
+    
+    // Update the date when the page loads
+    document.addEventListener('DOMContentLoaded', updateCurrentDate);
+    
+    // Show message if provided
+    var msg = '{{msg}}';
+    if (msg != '') alert(msg);
+</script>
+{% endblock %}

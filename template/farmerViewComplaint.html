@@ -1,0 +1,38 @@
+{% extends 'farmerbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Complaints</h1>
+
+	<table class="table table-bordered table-striped table-secondary table-hover text-center">
+		<tr>
+			<th>ID</th>
+			<th>DATE</th>
+			<th>SUBJECT</th>
+			<th>DESCRIPTION</th>
+			<th>REPONSE</th>
+			<th>REPONSE DATE</th>
+			<th>RESPONDED BY</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.id}}</td>
+			<td>{{d.date}}</td>
+			<td>{{d.subject}}</td>
+			<td>{{d.desc}}</td>
+			<td>{{d.response}}</td>
+			<td>{% if d.response != "Pending" %}{{d.responseDate}}{% else %}------{% endif %}</td>
+			<td>{% if d.response != "Pending" %}{{d.officer.name}}{% else %}------{% endif %}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

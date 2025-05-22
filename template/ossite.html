@@ -1,0 +1,45 @@
+{% extends 'overseerbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div class="container">
+	<h1 class="text-center mt-3">Site registration</h1>
+	<form method="POST">
+		{% csrf_token %}
+		<table class="m-auto">
+			<tr>
+				<td>Site Name</td>
+				<td>
+					<input type="text" class="form-control" name="txtName" required />
+				</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>
+					<textarea name="txtAddress" required class="form-control"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Other information</td>
+				<td>
+					<textarea name="txtOther" required class="form-control"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" class="btn btn-primary" value="Submit" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') {
+		alert(msg);
+		location = '/osprojectforsite';
+	}
+</script>
+{% endblock %}

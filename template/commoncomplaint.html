@@ -1,0 +1,151 @@
+{% extends 'commonbase.html' %}
+{% block content %}
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    .error-message {
+        color: red;
+        font-size: 0.9rem;
+        display: none;
+    }
+</style>
+
+<div class="container">
+    <div class="form-container">
+        <h1 class="text-center mb-4">Submit Your Complaint</h1>
+        <form id="complaintForm" method="POST" novalidate>
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="txtSubject">Subject of Complaint <span class="text-danger">*</span></label>
+                <input type="text" 
+                       class="form-control" 
+                       id="txtSubject" 
+                       name="txtSubject" 
+                       required 
+                       minlength="5" 
+                       maxlength="100"
+                       placeholder="Briefly describe the nature of your complaint">
+                <small class="error-message" id="subjectError">Please enter a subject between 5-100 characters.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="txtDesc">Description <span class="text-danger">*</span></label>
+                <textarea 
+                    class="form-control" 
+                    id="txtDesc" 
+                    name="txtDesc" 
+                    required 
+                    minlength="20" 
+                    maxlength="500" 
+                    rows="4"
+                    placeholder="Provide detailed information about your complaint (20-500 characters)"></textarea>
+                <small class="error-message" id="descError">Please provide a detailed description (20-500 characters).</small>
+            </div>
+
+            <div class="form-group">
+                <label for="txtName">Name of Complainant <span class="text-danger">*</span></label>
+                <input type="text" 
+                       class="form-control" 
+                       id="txtName" 
+                       name="txtName" 
+                       required 
+                       pattern="[a-zA-Z\s]+" 
+                       minlength="2" 
+                       maxlength="50"
+                       placeholder="Enter your full name">
+                <small class="error-message" id="nameError">Please enter a valid name (2-50 characters, letters only).</small>
+            </div>
+
+            <div class="form-group">
+                <label for="txtAddress">Address <span class="text-danger">*</span></label>
+                <textarea 
+                    class="form-control" 
+                    id="txtAddress" 
+                    name="txtAddress" 
+                    required 
+                    minlength="10" 
+                    maxlength="200"
+                    rows="3"
+                    placeholder="Enter your complete postal address"></textarea>
+                <small class="error-message" id="addressError">Please provide a valid address (10-200 characters).</small>
+            </div>
+
+            <div class="form-group">
+                <label for="txtContact">Contact Number <span class="text-danger">*</span></label>
+                <input type="tel" 
+                       class="form-control" 
+                       id="txtContact" 
+                       name="txtContact" 
+                       required 
+                       pattern="[6-9][0-9]{9}" 
+                       maxlength="10"
+                       placeholder="10-digit mobile number starting with 6-9">
+                <small class="error-message" id="contactError">Please enter a valid 10-digit mobile number.</small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Submit Complaint</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('complaintForm');
+    const fields = ['txtSubject', 'txtDesc', 'txtName', 'txtAddress', 'txtContact'];
+
+    // Custom validation function
+    function validateField(field) {
+        const input = document.getElementById(field);
+        const errorElement = document.getElementById(field + 'Error');
+        
+        if (input.validity.valid) {
+            errorElement.style.display = 'none';
+            return true;
+        } else {
+            errorElement.style.display = 'block';
+            return false;
+        }
+    }
+
+    // Add real-time validation
+    fields.forEach(field => {
+        document.getElementById(field).addEventListener('input', function() {
+            validateField(field);
+        });
+    });
+
+    // Form submission validation
+    form.addEventListener('submit', function(event) {
+        let isValid = true;
+        
+        fields.forEach(field => {
+            if (!validateField(field)) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+
+    // Display server-side message
+    var msg = "{{msg}}";
+    if (msg !== "") {
+        alert(msg);
+    }
+});
+</script>
+{% endblock %}
